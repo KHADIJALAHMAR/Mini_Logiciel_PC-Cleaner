@@ -1,6 +1,6 @@
 require('dotenv')
 const User =require('../models/user');
-// const jwt =require('jsonwebtoken');
+const jwt =require('jsonwebtoken');
 
 const Register = async (req,res)=>{
     try{
@@ -41,9 +41,13 @@ const Login = async (req,res) => {
         else{
             await  User.findOne({where :{ email: req.body.email, password :req.body.password}}).then((user)=>{
                 if(!user){
-                    res.status(404).json({message : 'Password incorect'})
+                    res.status(404).json({where :{message : 'Password incorect'}})
                 }else{
-                    res.status(200).json({message : 'is login'})
+                        const id = user.id;
+                        const email = user.email;
+                        const username= user.username
+                        const accessToken = jwt.sign({id,email,username},process.env.TOKEN_SECRET);
+                        res.json({accessToken ,user});
                     }
             })
         } 
