@@ -14,6 +14,7 @@ app.use(express.json());
 
 app.use('/auth', authentificationRoute);
 
+
 // database connection
 
 database.authenticate()
