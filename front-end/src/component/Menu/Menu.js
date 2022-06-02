@@ -1,12 +1,13 @@
 import React from 'react'
 import Button from '../UI/Button'
 import List from './List'
+import Logo from '../../assets/logo.png';
 
 function Menu() {
   return (
     <div className='menu'>
         <div className='logo_container'>
-            Logo
+            <img src={Logo} alt="logo" style={{width: "100%"}}  />
         </div>
         
         <List />

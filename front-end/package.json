@@ -39,5 +39,9 @@
   },
   "devDependencies": {
     "electron": "^19.0.1"
+  },
+  "directories": {
+    "buildResources": "build",
+    "app": "build"
   }
 }
