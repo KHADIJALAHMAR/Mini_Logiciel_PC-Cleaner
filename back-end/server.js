@@ -1,11 +1,13 @@
 const express =require('express')
-const app = express()
+const fs=require('fs');
+const app = express();
 
 const database = require('./src/config/database');
-
+const {getSizeFolder}= require('./src/controller/TraitementController');
 
 // import userRoute
 const authentificationRoute = require('./src/router/Authenticat');
+
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
@@ -14,7 +16,7 @@ app.use(express.json());
 
 app.use('/auth', authentificationRoute);
 
-
+getSizeFolder()
 // database connection
 
 database.authenticate()
