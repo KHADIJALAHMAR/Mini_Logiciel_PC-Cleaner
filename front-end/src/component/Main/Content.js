@@ -5,6 +5,8 @@ import {ReactComponent as EraserIcon} from '../../assets/icons/eraser.svg'
 import {ReactComponent as UpdateIcon} from '../../assets/icons/update.svg'
 
 function Content() {
+
+
   return (
     <div className='content'>
         <ActionPressable title="NETTOYER" Icon={EraserIcon} />

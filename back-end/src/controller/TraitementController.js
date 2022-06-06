@@ -5,6 +5,7 @@ const{ history} =require('../models/index');
 const fs = require("fs");
 const path = require("path");
 const MyFolder = "C:/Users/Youcode/AppData/Local/Temp";
+const Director='C:/Users/Youcode/Desktop/douaa';
 
 const getSizeFolder = async (req, res) => {
   let result = "";
@@ -24,20 +25,24 @@ const getSizeFolder = async (req, res) => {
     }
   });
 };
+const remove = (Directory)=>{
+  fs.unlink(Directory  , function (err) {
+    if (err) {
+      console.error(err);
+      console.log("File can't removed found");
+      getFilesInDirectory(Directory)
+    } else {
+      console.log("File Delete Successfuly ");
+    }
+  });
+}
 
-function getFilesInDirectory() {
+function getFilesInDirectory(dir = 'C:/Users/Youcode/Desktop/douaa') {
   console.log("\nFiles present in directory:");
-  let files = fs.readdirSync("C:/Users/Youcode/Desktop/khadija");
+  let files = fs.readdirSync(dir);
   files.forEach((file) => {
     console.log("file : ", file);
-    fs.unlink("C:/Users/Youcode/Desktop/khadija" + "\\" + file, function (err) {
-      if (err) {
-        console.error(err);
-        console.log("File not found");
-      } else {
-        console.log("File Delete Successfuly ", new Date());
-      }
-    });
+    remove(dir + "\\" + file)
   });
 }
 
