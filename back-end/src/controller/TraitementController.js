@@ -6,7 +6,7 @@ const getSizeFolder = async ()=>{
     console.log('hello');
     fastFolderSize ('C:/Users/Youcode/AppData/Local/Temp', (err, bytes) => {
                 if (err) {
-                  throw err
+                throw err
                 }
                 result = bytes;
                 console.log(bytes)
