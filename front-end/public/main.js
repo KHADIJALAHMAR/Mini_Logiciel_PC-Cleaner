@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron')
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS']=true
 
 function createWindow () {
   // Create the browser window.
@@ -8,10 +9,12 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true
     }
-  })
+  })  
+
 
   //load the index.html from a url
   win.loadURL('http://localhost:3000');
+ 
 
   // Open the DevTools.
   win.webContents.openDevTools()
