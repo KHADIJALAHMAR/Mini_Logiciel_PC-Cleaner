@@ -1,22 +1,39 @@
-const fastFolderSize = require('fast-folder-size')
-;
+const express = require("express");
+const fastFolderSize = require("fast-folder-size");
+// const res = require("express/lib/response");
+const fs = require("fs");
+const path = require("path");
+const MyFolder = "C:/Users/Youcode/AppData/Local/Temp";
 
-const getSizeFolder = async ()=>{
-    let result = ""
-    console.log('hello');
-    fastFolderSize ('C:/Users/Youcode/AppData/Local/Temp', (err, bytes) => {
-                if (err) {
-                throw err
-                }
-                result = bytes;
-                console.log(bytes)
-                return result ;
-            })}
+const getSizeFolder = async (req, res) => {
+  let result = "";
+  fastFolderSize(MyFolder, (err, bytes) => {
+    if (err) {
+      throw err;
+    }
+    result = bytes / 2000 + "KB";
+    console.log("res :", res);
+    res.json( result );
+  });
+};
 
-
-module.exports ={
-    getSizeFolder
-
+function getFilesInDirectory() {
+  console.log("\nFiles present in directory:");
+  let files = fs.readdirSync("C:/Users/Youcode/Desktop/khadija");
+  files.forEach((file) => {
+    console.log("file : ", file);
+    fs.unlink("C:/Users/Youcode/Desktop/khadija" + "\\" + file, function (err) {
+      if (err) {
+        console.error(err);
+        console.log("File not found");
+      } else {
+        console.log("File Delete Successfuly ", new Date());
+      }
+    });
+  });
 }
 
-
+module.exports = {
+  getSizeFolder,
+  getFilesInDirectory,
+};

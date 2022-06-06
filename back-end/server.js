@@ -1,12 +1,15 @@
 const express =require('express')
 const fs=require('fs');
 const app = express();
-
 const database = require('./src/config/database');
-const {getSizeFolder}= require('./src/controller/TraitementController');
+
+
+// import  controller
+const {getSizeFolder  ,getFilesInDirectory}= require('./src/controller/TraitementController');
 
 // import userRoute
 const authentificationRoute = require('./src/router/Authenticat');
+const traitement =require('./src/router/Traitement');
 
 
 app.use(express.urlencoded({ extended: true }))
@@ -15,8 +18,8 @@ app.use(express.json());
 // middleware 
 
 app.use('/auth', authentificationRoute);
+app.use('/Analyse', traitement)
 
-getSizeFolder()
 // database connection
 
 database.authenticate()
