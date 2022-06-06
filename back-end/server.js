@@ -7,6 +7,9 @@ const database = require('./src/config/database');
 // import  controller
 const {getSizeFolder  ,getFilesInDirectory}= require('./src/controller/TraitementController');
 
+// import Model
+const {User ,history}= require('./src/models/index')
+
 // import userRoute
 const authentificationRoute = require('./src/router/Authenticat');
 const traitement =require('./src/router/Traitement');

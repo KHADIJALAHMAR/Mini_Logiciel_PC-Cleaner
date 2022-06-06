@@ -26,6 +26,3 @@ password :{
 },
 
 });
-connexion.sync({alter:true}).then(() => {
-    console.log("Table Created !");
-});

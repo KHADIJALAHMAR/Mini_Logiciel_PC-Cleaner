@@ -1,5 +1,6 @@
 const express = require("express");
 const fastFolderSize = require("fast-folder-size");
+const{ history} =require('../models/index');
 // const res = require("express/lib/response");
 const fs = require("fs");
 const path = require("path");
@@ -14,6 +15,13 @@ const getSizeFolder = async (req, res) => {
     result = bytes / 2000 + "KB";
     console.log("res :", res);
     res.json( result );
+    if(result){
+      history.create({ time_at: new Date().toGMTString(), size: result } ).then(
+        (response) => {
+          res.json({ message: "history saved", result });
+        }
+      );
+    }
   });
 };
 
