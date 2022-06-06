@@ -1,11 +1,18 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import {ReactComponent as CloseIcon} from '../../assets/icons/close.svg'
 import {ReactComponent as MinimizeIcon} from '../../assets/icons/minimize.svg'
 import ActionButton from '../UI/ActionButton'
 import TextItem from '../UI/TextItem'
 import Button from '../UI/Button'
+import axios from 'axios'
+const URL= 'http://localhost:5000/Analyse'
 
 function Header() {
+  const [data,setData] =useState ({});
+  const analyse = async ()=>{
+    const data =await axios.get(`${URL}/getsize`)
+    console.log(data);
+}
   return (
     <div className='header'>
       <div className='header_top'>
