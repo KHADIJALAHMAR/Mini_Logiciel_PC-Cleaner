@@ -46,7 +46,6 @@ function getFilesInDirectory(dir = "C:/Users/Youcode/Desktop/douaa") {
   });
 }
 const findHistory = async (req, res) => {
-  console.log("hahahahs");
   history
     .findAll({
       limit: 1,
