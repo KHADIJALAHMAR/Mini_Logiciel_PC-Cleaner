@@ -14,7 +14,6 @@ const getSizeFolder = async (req, res) => {
     }
     result = bytes / 2000 + "KB";
     console.log("res :", res);
-    // res.json(result);
     if (result) {
       history
         .create({ time_at: new Date().toGMTString(), size: result })
@@ -55,6 +54,13 @@ function nettoyer(req,res) {
 }
 
 
+function getAllhistory(req,res) {
+  history.findAll().then((resault)=>
+    res.json(resault)
+  )
+}
+
+
 const findHistory = async (req, res) => {
   history
     .findAll({
@@ -66,9 +72,12 @@ const findHistory = async (req, res) => {
     });
 };
 
+
+
 module.exports = {
   getSizeFolder,
   getFilesInDirectory,
   findHistory,
-  nettoyer
+  nettoyer,
+  getAllhistory
 };
