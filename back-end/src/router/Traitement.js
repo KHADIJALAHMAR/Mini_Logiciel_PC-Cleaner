@@ -11,4 +11,7 @@ router.route('/nettoyer')
 .get(TraitementController.getFilesInDirectory);
 
 
+router.route('/history')
+.get(TraitementController.findHistory);
+
 module.exports = router;

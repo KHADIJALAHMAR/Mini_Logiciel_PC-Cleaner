@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(cors());
 
 // getSizeFolder();
-getFilesInDirectory();
+// getFilesInDirectory();
 // middleware 
 
 app.use('/auth', authentificationRoute);

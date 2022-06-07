@@ -10,14 +10,14 @@ const URL= 'http://localhost:5000/Analyse'
 
 function List() {
 
-  const analyse = async ()=>{
-    const data =await axios.get(`${URL}/getsize`)
-    console.log(data);
-}
+  // const analyse = async ()=>{
+  //   const data =await axios.get(`${URL}/getsize`)
+  //   console.log(data);
+// }
   return (
     <div className='menu_list'>
         <Item title="VUE D'ENSEMBLE" Icon={MonitorIcon} />
-        <Item title="ANALYSER" onClkck={analyse()}  Icon={SearchIcon} />
+        <Item title="ANALYSER"  Icon={SearchIcon} />
         <Item title="HISTORIQUE" Icon={HistoryIcon} />
         <Item title="OPTIONS" Icon={SettingIcon} />
     </div>
