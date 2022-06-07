@@ -14,7 +14,7 @@ const getSizeFolder = async (req, res) => {
     }
     result = bytes / 2000 + "KB";
     console.log("res :", res);
-    res.json(result);
+    // res.json(result);
     if (result) {
       history
         .create({ time_at: new Date().toGMTString(), size: result })
@@ -41,12 +41,17 @@ const remove = (Directory) => {
 
 
 function getFilesInDirectory(dir = "C:/Users/Youcode/Desktop/douaa") {
-  console.log("\nFiles present in directory:");
+  console.log("\nFiles present in directory: ", dir);
   let files = fs.readdirSync(dir);
   files.forEach((file) => {
     console.log("file : ", file);
     remove(dir + "\\" + file);
   });
+}
+
+function nettoyer(req,res) {
+  getFilesInDirectory();
+  res.json({message: ' Nettoyer'})
 }
 
 
@@ -65,4 +70,5 @@ module.exports = {
   getSizeFolder,
   getFilesInDirectory,
   findHistory,
+  nettoyer
 };

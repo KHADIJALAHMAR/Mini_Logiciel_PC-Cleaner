@@ -20,14 +20,14 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 app.use(cors());
 
-// getSizeFolder();
-// getFilesInDirectory();
+
 // middleware 
 
 app.use('/auth', authentificationRoute);
 app.use('/Analyse', traitement)
 
 // database connection
+// getFilesInDirectory()
 
 database.authenticate()
 .then(()=>console.log('Database connect'))

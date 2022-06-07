@@ -1,8 +1,8 @@
 import React from 'react'
 
-function ActionPressable({title, Icon}) {
+function ActionPressable({title, Icon,handleClick}) {
   return (
-    <button className='action_pressable'>
+    <button className='action_pressable' onClick={handleClick}>
       <Icon />
       <p>{title}</p>
     </button>
