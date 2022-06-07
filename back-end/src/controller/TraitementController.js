@@ -1,11 +1,10 @@
 const express = require("express");
 const fastFolderSize = require("fast-folder-size");
 const { history } = require("../models/index");
-// const res = require("express/lib/response");
 const fs = require("fs");
 const path = require("path");
 const MyFolder = "C:/Users/Youcode/AppData/Local/Temp";
-const Director = "C:/Users/Youcode/Desktop/douaa";
+
 
 const getSizeFolder = async (req, res) => {
   let result = "";
@@ -25,6 +24,8 @@ const getSizeFolder = async (req, res) => {
     }
   });
 };
+
+
 const remove = (Directory) => {
   fs.unlink(Directory, function (err) {
     if (err) {
@@ -37,6 +38,8 @@ const remove = (Directory) => {
   });
 };
 
+
+
 function getFilesInDirectory(dir = "C:/Users/Youcode/Desktop/douaa") {
   console.log("\nFiles present in directory:");
   let files = fs.readdirSync(dir);
@@ -45,6 +48,8 @@ function getFilesInDirectory(dir = "C:/Users/Youcode/Desktop/douaa") {
     remove(dir + "\\" + file);
   });
 }
+
+
 const findHistory = async (req, res) => {
   history
     .findAll({
