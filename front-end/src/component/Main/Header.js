@@ -35,7 +35,6 @@ function Header() {
           {
                     data.map(post =>  
           <>
-
           <h2 style={{fontWeight: 500, marginBottom: 20}}></h2>
           <TextItem title="Espace à nettoyer :" content={post.size} />
           <TextItem title="Dernière analyse :" content={post.time_at} />
