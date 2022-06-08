@@ -1,10 +1,10 @@
 const express = require("express");
 const fastFolderSize = require("fast-folder-size");
-const{ history} =require('../models/index');
-// const res = require("express/lib/response");
+const { history } = require("../models/index");
 const fs = require("fs");
 const path = require("path");
 const MyFolder = "C:/Users/Youcode/AppData/Local/Temp";
+
 
 const getSizeFolder = async (req, res) => {
   let result = "";
@@ -14,34 +14,70 @@ const getSizeFolder = async (req, res) => {
     }
     result = bytes / 2000 + "KB";
     console.log("res :", res);
-    res.json( result );
-    if(result){
-      history.create({ time_at: new Date().toGMTString(), size: result } ).then(
-        (response) => {
+    if (result) {
+      history
+        .create({ time_at: new Date().toGMTString(), size: result })
+        .then((response) => {
           res.json({ message: "history saved", result });
-        }
-      );
+        });
     }
   });
 };
 
-function getFilesInDirectory() {
-  console.log("\nFiles present in directory:");
-  let files = fs.readdirSync("C:/Users/Youcode/Desktop/khadija");
+
+const remove = (Directory) => {
+  fs.unlink(Directory, function (err) {
+    if (err) {
+      console.error(err);
+      console.log("File can't removed found");
+      getFilesInDirectory(Directory);
+    } else {
+      console.log("File Delete Successfuly ");
+    }
+  });
+};
+
+
+
+function getFilesInDirectory(dir = "C:/Users/Youcode/Desktop/douaa") {
+  console.log("\nFiles present in directory: ", dir);
+  let files = fs.readdirSync(dir);
   files.forEach((file) => {
     console.log("file : ", file);
-    fs.unlink("C:/Users/Youcode/Desktop/khadija" + "\\" + file, function (err) {
-      if (err) {
-        console.error(err);
-        console.log("File not found");
-      } else {
-        console.log("File Delete Successfuly ", new Date());
-      }
-    });
+    remove(dir + "\\" + file);
   });
 }
+
+function nettoyer(req,res) {
+  getFilesInDirectory();
+  res.json({message: ' Nettoyer'})
+}
+
+
+function getAllhistory(req,res) {
+  history.findAll().then((resault)=>
+    res.json(resault)
+  )
+}
+
+
+const findHistory = async (req, res) => {
+  history
+    .findAll({
+      limit: 1,
+      order: [["createdAt", "DESC"]],
+    })
+    .then((resault) => {
+      res.json(resault);
+    });
+};
+
+
 
 module.exports = {
   getSizeFolder,
   getFilesInDirectory,
+  findHistory,
+  nettoyer,
+  getAllhistory
 };

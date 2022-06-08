@@ -8,7 +8,14 @@ router.route('/getsize')
 .get(TraitementController.getSizeFolder);
 
 router.route('/nettoyer')
-.get(TraitementController.getFilesInDirectory);
+.get(TraitementController.nettoyer);
+
+
+router.route('/history')
+.get(TraitementController.findHistory);
+
+router.route('/allhistory')
+.get(TraitementController.getAllhistory);
 
 
 module.exports = router;

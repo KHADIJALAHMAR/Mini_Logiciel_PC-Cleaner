@@ -1,6 +1,7 @@
 const express =require('express')
 const fs=require('fs');
 const app = express();
+const cors =require('cors');
 const database = require('./src/config/database');
 
 
@@ -17,6 +18,8 @@ const traitement =require('./src/router/Traitement');
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
+app.use(cors());
+
 
 // middleware 
 
@@ -24,6 +27,7 @@ app.use('/auth', authentificationRoute);
 app.use('/Analyse', traitement)
 
 // database connection
+// getFilesInDirectory()
 
 database.authenticate()
 .then(()=>console.log('Database connect'))
