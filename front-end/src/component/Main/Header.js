@@ -12,7 +12,6 @@ function Header() {
       useEffect(()=>{
       axios.get(`${URL}/history`).then(
         res=>{
-          console.log('hiii');
           setData(res.data);
           console.log(res.data)
         }

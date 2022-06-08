@@ -14,8 +14,7 @@ router.route('/nettoyer')
 router.route('/history')
 .get(TraitementController.findHistory);
 
-
-router.route('/Allhistory')
+router.route('/allhistory')
 .get(TraitementController.getAllhistory);
 
 
